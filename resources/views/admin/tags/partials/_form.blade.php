@@ -25,3 +25,16 @@
 
     <input class="btn btn-primary btn-lg btn-block" type="submit" value="{{ $btn }}">
     <a class="btn btn-secondary btn-lg btn-block" href="{{ route('tags.index') }}">Regresar</a>
+
+    @section('scripts')
+    <script src="{{ asset('vendor/stringToSlug/jquery.stringToSlug.min.js') }}"></script>
+    <script>
+        $(document).ready(function(){
+            $("#name, #slug").stringToSlug({
+                callback: function(text){
+                    $('#slug').val(text);
+                }
+            });
+        });
+    </script>
+    @endsection
