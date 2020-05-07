@@ -11,7 +11,7 @@
 
                     <a href="{{ route('tags.create') }}"
                     class="btn btn-sm btn-primary float-right">
-                        Crear
+                        Crear Etiqueta
                     </a>
 
                 </div>
@@ -30,13 +30,13 @@
                                     <td>{{ $tag->id }}</td>
                                     <td>{{ $tag->name }}</td>
                                     <td width=10px>
-                                        <a href="{{ route('tags.show', $tag) }}" class="btn btn-info">
+                                        <a href="{{ route('tags.show', $tag) }}" class="btn btn-outline-info btn-sm">
                                             ver
                                         </a>
                                     </td>
 
                                     <td width=10px>
-                                        <a href="{{ route('tags.edit', $tag) }}" class="btn btn-outline-dark">
+                                        <a href="{{ route('tags.edit', $tag) }}" class="btn btn-outline-dark btn-sm">
                                             Editar
                                         </a>
                                     </td>
@@ -46,7 +46,7 @@
                                             @method('DElETE')
                                             @csrf
                                             <input
-                                            class="btn btn-danger"
+                                            class="btn btn-outline-danger btn-sm"
                                             type="submit"
                                             value="Eliminar">
                                         </form>

@@ -6,11 +6,8 @@
           <div class="col-md-8 col-md-offset-4">
             <div class="card">
 
-                @if(session('message'))
-                <div class="alert alert-success text-center" role="alert">
-                    {{ session('message') }}
-                </div>
-                @endif
+               @include('message.session')
+
                 <div class="card-header">
                     Detalles de la etiqueta:
                 </div>

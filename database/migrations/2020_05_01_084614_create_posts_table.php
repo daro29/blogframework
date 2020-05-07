@@ -26,11 +26,11 @@ class CreatePostsTable extends Migration
 
             $table->foreignId('user_id')
             ->constrained()
-            ->cascadeOnDelate();
+            ->onDelete('cascade');
 
             $table->foreignId('category_id')
             ->constrained()
-            ->cascadeOnDelate();
+            ->onDelete('cascade');
 
             $table->timestamps();
         });

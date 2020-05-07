@@ -19,6 +19,7 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+
             <div class="container">
                 <a class="navbar-brand">
                     {{ config('app.name', 'Laravel') }}
@@ -29,12 +30,12 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <li><a class="nav-link" href="{{ route('blog') }}">Blog</a></li>
+                    <ul class="navbar-nav mr-auto nav-pills">
+                        <li><a class="nav-link {{ setActive('blog') }}" href="{{ route('blog') }}">Blog</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto nav-pills">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -46,9 +47,9 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown"><a id="navbarDropdown" class="nav-link" href="{{      route('tags.index')          }}">Etiquetas</a></li>
-                            <li class="nav-item dropdown"><a id="navbarDropdown" class="nav-link" href="{{      route('categories.index')    }}">Categorias</a></li>
-                            <li class="nav-item dropdown"><a id="navbarDropdown" class="nav-link" href="{{      route('posts.index')         }}">Entradas</a></li>
+                            <li class="nav-item dropdown"><a id="navbarDropdown" class="nav-link    {{  setActive('tags.index')          }}"    href="{{      route('tags.index')          }}">Etiquetas</a></li>
+                            <li class="nav-item dropdown"><a id="navbarDropdown" class="nav-link    {{  setActive('categories.index')    }}"    href="{{      route('categories.index')    }}">Categorias</a></li>
+                            <li class="nav-item dropdown"><a id="navbarDropdown" class="nav-link    {{  setActive('posts.index')         }}"    href="{{      route('posts.index')         }}">Entradas</a></li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>

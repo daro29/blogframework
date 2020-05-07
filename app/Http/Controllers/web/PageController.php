@@ -29,7 +29,7 @@ class PageController extends Controller
 
     public function category($slug)
     {
-        //obten la categoria mientras cuyo slug sea igual al slug que estamos recogiendo y recoge unicamente el id.
+        //obten la categoria cuyo slug sea igual al slug que estamos recogiendo y recoge unicamente el primer id.
         $category = Category::where('slug',$slug)->pluck('id')->first();
 
         $posts = Post::where('category_id', $category)->latest()->where('status', 'PUBLISHED')->paginate(3);
@@ -39,7 +39,7 @@ class PageController extends Controller
 
     public function tag($slug)
     {
-        // whereHas (Que tengan)
+        // whereHas (Que tengan) se utiliza en relaciones muchos a muchos
         //trae todos los posts que tegan etiquetas y utilizamos query en la funcion anonima para almacenar todos
         // los post que acabamos de traer y en $query->where le decimos que solo muestre los post con la etiqueta que almacenamos en slug
         $posts = Post::whereHas('tags', function($query) use ($slug){
