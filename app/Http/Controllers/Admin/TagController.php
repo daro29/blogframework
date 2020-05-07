@@ -43,9 +43,9 @@ class TagController extends Controller
      */
     public function store(SaveTagRequest $request)
     {
-        $tag = Tag::create($request->validated());
+        Tag::create($request->validated());
 
-        return redirect()->route('tags.index', $tag)
+        return redirect()->route('tags.index')
         ->with('message', 'Etiqueta creada con éxito');
     }
 

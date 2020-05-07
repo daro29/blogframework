@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Category;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\SaveCategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -14,7 +16,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.category.index');
+        $categories = Category::latest()->paginate(8);
+
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -24,7 +28,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.categories.create');
     }
 
     /**
@@ -33,9 +37,13 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SaveCategoryRequest $request)
     {
-        //
+        Category::create($request->validated());
+
+
+        return redirect()->route('categories.index')
+        ->with('message', 'Categoria creada éxitosamente');
     }
 
     /**
@@ -44,9 +52,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Category $category)
     {
-        //
+        return view ('admin.categories.show', compact('category'));
     }
 
     /**
@@ -55,9 +63,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+       return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -67,9 +75,13 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SaveCategoryRequest $request, Category $category)
     {
-        //
+        $category->update($request->validated());
+
+        return redirect()->route('categories.show', compact('category'))
+        ->with('message', 'Categoria editada éxitosamente');
+
     }
 
     /**
@@ -78,8 +90,11 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        return redirect()->route('categories.index')
+        ->with('message', 'La categoria fue eliminada éxitosamente');
     }
 }
