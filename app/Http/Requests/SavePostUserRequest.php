@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SavePostRequest extends FormRequest
+class SavePostUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -31,18 +31,17 @@ class SavePostRequest extends FormRequest
             'tags'          =>  'required|array',
             'body'          =>  'required',
             'excerpt'       =>  'required|string|min:20',
-            'status'        =>  'required|in:DRAFT,PUBLISHED',
         ];
         if($this->get('file'))
         $rules = array_merge($rules, ['file' => 'mimes:jpg,jpeg,png']);
 
         return $rules;
     }
-
     public function messages()
     {
         return [
-            'status.required' => 'el campo estado es requerido',
+            'status.required' => 'Necesito ayuda!',
         ];
+
     }
 }

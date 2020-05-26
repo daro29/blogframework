@@ -3,6 +3,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 col-sm-8 col-lg-8 mx-auto">
+            @include('message.session')
             <h1>Lista de Artículos</h1>
             @foreach($posts as $post)
                 <div class="card mb-3">
