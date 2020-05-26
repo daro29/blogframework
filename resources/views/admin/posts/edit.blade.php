@@ -4,6 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 offset-2">
+            {{-- {{ dd($post) }} --}}
             @include('message.errors')
             @include('message.session')
             <form enctype="multipart/form-data"  accept-charset="UTF-8" class="px-4 shadow-lg p-3 mb-5 bg-white rounded p-3 mb-5 bg-white rounded" action="{{ route('posts.update', $post) }}" method="POST">

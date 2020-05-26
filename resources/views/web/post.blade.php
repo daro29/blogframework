@@ -16,7 +16,6 @@
                                 {{ $post->excerpt }}
                             </p>
                             <hr>
-                            {!! $post->body !!}
                             <hr>
                             Etiquetas:
                             @foreach ($post->tags as $tag)

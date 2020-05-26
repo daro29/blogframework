@@ -18,7 +18,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar navbar-dark bg-dark shadow-sm">
 
             <div class="container">
                 <a class="navbar-brand">
@@ -47,13 +47,28 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown"><a id="navbarDropdown" class="nav-link    {{  setActive('tags.index')          }}"    href="{{      route('tags.index')          }}">Etiquetas</a></li>
-                            <li class="nav-item dropdown"><a id="navbarDropdown" class="nav-link    {{  setActive('categories.index')    }}"    href="{{      route('categories.index')    }}">Categorias</a></li>
-                            <li class="nav-item dropdown"><a id="navbarDropdown" class="nav-link    {{  setActive('posts.index')         }}"    href="{{      route('posts.index')         }}">Entradas</a></li>
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                            <li class="nav-item-dropdown">
+                                <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    @if (Auth::user()->role == 'ADMIN')
+                                        <span class="text-white">Bienvenido: Administrador</span>
+                                    @else
+                                    <span class="text-white">Bienvenido: {{ Auth::user()->name }}</span>
+                                    @endif
                                 </a>
+                            </li>
+                            @if(Auth::user()->role== 'ADMIN')
+                                <li class="nav-item dropdown"><a id="navbarDropdown" class="nav-link    {{  setActive('tags.index')          }}"    href="{{      route('tags.index')          }}">Etiquetas</a></li>
+                                <li class="nav-item dropdown"><a id="navbarDropdown" class="nav-link    {{  setActive('categories.index')    }}"    href="{{      route('categories.index')    }}">Categorias</a></li>
+                                <li class="nav-item dropdown"><a id="navbarDropdown" class="nav-link    {{  setActive('posts.index')         }}"    href="{{      route('posts.index')         }}">Entradas</a></li>
+                            @endif
+                            @if(Auth::user()->role== 'USER')
+                                <li class="nav-item dropdown"><a id="navbarDropdown" class="nav-link    {{  setActive('user.posts.index')         }}"    href="{{      route('user.posts.index')         }}">Entradas</a></li>
+                            @endif
+
+                            <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
