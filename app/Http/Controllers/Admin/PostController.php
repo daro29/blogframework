@@ -36,10 +36,10 @@ class PostController extends Controller
      */
     public function create(Post $post)
     {
-        $category   = Category::orderBy('name', 'ASC')->pluck('name', 'id');
-        $tags       = Tag::orderBy('name', 'ASC')->get();
+        $category = Category::latest()->pluck('name', 'id');
+        $tags     = Tag::latest()->get();
 
-        return view('admin.posts.create', compact('post','category', 'tags'));
+        return view('user.posts.create', compact('post','category','tags'));
     }
 
     /**
@@ -51,18 +51,19 @@ class PostController extends Controller
     public function store(SavePostRequest $request)
     {
 
-        $post = Post::create($request->validated());
+        $post  = Post::create($request->validated());
 
         //image
-        if($request->file('file')){
+        if($request->file('file'))
+        {
             $path = Storage::disk('public')->put('image', $request->file('file'));
             $post->fill(['file' => asset($path)])->save();
         }
         //TAGS
         $post->tags()->attach($request->get('tags'));
 
-        return redirect()->route('posts.index', compact('post'))
-        ->with('message', 'Entrada creada éxitosamente');
+        return redirect()->route('user.posts.index', compact('post'))
+        ->with('message', 'Articulo creado con éxito');
     }
 
     /**

@@ -33,7 +33,7 @@
             id="name"
             name="name"
             value="{{ old('name', $post->name ?? '') }}">
-        </div>
+    </div>
 
     <div class="form-group">
         <label for="slug">Slug</label>
@@ -86,7 +86,6 @@
         @else
             <label><input type="radio" name="status" id="status" value="DRAFT">Borrador</label>
         @endif
-
     </div>
 
     <div class="form-group">
@@ -124,7 +123,7 @@
 		CKEDITOR.config.width  = 'auto';
 		CKEDITOR.replace('body');
     </script>
-    <script>
+    {{-- <script>
         function LimpiarDatos(){
             $("#category_id").val('');
             $("#name").val('');
@@ -160,5 +159,5 @@
             }
         });
         });
-    </script>
+    </script> --}}
     @endsection

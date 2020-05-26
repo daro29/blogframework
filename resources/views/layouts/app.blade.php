@@ -21,6 +21,7 @@
         <nav class="navbar navbar-expand-md navbar navbar-dark bg-dark shadow-sm">
 
             <div class="container">
+
                 <a class="navbar-brand">
                     {{ config('app.name', 'Laravel') }}
                 </a>
@@ -33,6 +34,12 @@
                     <ul class="navbar-nav mr-auto nav-pills">
                         <li><a class="nav-link {{ setActive('blog') }}" href="{{ route('blog') }}">Blog</a></li>
                     </ul>
+
+                    <form class="form-inline" action="{{ route('search') }}" method="POST">
+                        @csrf
+                        <input class="form-control mr-sm-2" name="search" type="search" placeholder="Buscar Post" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+                    </form>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto nav-pills">

@@ -48,4 +48,18 @@ class PageController extends Controller
 
         return view('web.posts',compact('posts'));
     }
+
+    public function search(Request $request)
+    {
+        if($request){
+            $query = trim($request->get('search'));
+
+            $posts = Post::where('name', 'LIKE', '%' . $query . '%')
+            ->latest()
+            ->paginate(3);
+
+            // return view('web.posts',['posts' => $posts, 'search' => $query])->with('message','Los resultados de la busqueda son:');
+            return view('web.posts',compact('posts', 'query'));
+        }
+    }
 }
