@@ -11,6 +11,7 @@ Route::get('blog', 'web\PageController@blog')->name('blog');
 Route::get('entrada/{slug}',    'web\PageController@post')      ->name('post');
 Route::get('categoria/{slug}',  'web\PageController@category')  ->name('category');
 Route::get('etiqueta/{slug}',   'web\PageController@tag')       ->name('tag');
+Route::post('buscar/post',       'web\PageController@search')    ->name('search');
 
 //admin
 Route::resource('admin/tags',         'Admin\TagController');
